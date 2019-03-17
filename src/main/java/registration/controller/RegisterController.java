@@ -3,9 +3,7 @@ package registration.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import registration.bean.HeaderResp;
 import registration.bean.RegisterReq;
 import registration.bean.RegisterResp;
@@ -45,6 +43,13 @@ public class RegisterController {
         headerResp.setStatusCd(code);
         headerResp.setStatusDesc(description);
         return headerResp;
+    }
+
+    @GetMapping(path = "/users")
+    public ResponseEntity<?> getUserRegister(@RequestParam(name = "referenceCode", required = true) String referenceCode) {
+
+
+        return ResponseEntity.ok().build();
     }
 
 }

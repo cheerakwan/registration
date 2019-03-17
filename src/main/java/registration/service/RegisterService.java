@@ -49,8 +49,8 @@ public class RegisterService {
             rq.setMemberType(silver);
         }
 
-        if(emailExist(rq.getEmail())) {
-            throw new RegisterException("1002", "This email is already in the system.");
+        if(mobileExist(rq.getPhoneNumber())) {
+            throw new RegisterException("1002", "This mobile is already in the system.");
         }
         User user = new User();
         user.setUserName(rq.getUserName());
@@ -71,8 +71,8 @@ public class RegisterService {
 
     }
 
-    public boolean emailExist(String email) {
-        List<User> user = userRepository.findByEmailAddress(email);
+    public boolean mobileExist(String email) {
+        List<User> user = userRepository.findByMobile(email);
         if(user != null && user.size() > 0) {
             return true;
         }

@@ -52,20 +52,20 @@ public class RegisterServiceTest {
     }
 
     @Test
-    public void testEmailExist() {
-        String email = "aa123@gmail.com";
+    public void testMobileExist() {
+        String mobile = "0871365309";
         User u = new User();
-        u.setEmail(email);
-        Mockito.when(userRepository.findByEmailAddress(email)).thenReturn(Arrays.asList(u));
-        boolean result = registerService.emailExist(email);
+        u.setMobile(mobile);
+        Mockito.when(userRepository.findByMobile(mobile)).thenReturn(Arrays.asList(u));
+        boolean result = registerService.mobileExist(mobile);
         assertTrue(result);
     }
 
     @Test
-    public void testEmailNotExist() {
-        String email = "aa123@gmail.com";
-        Mockito.when(userRepository.findByEmailAddress(email)).thenReturn(Arrays.asList());
-        boolean result = registerService.emailExist(email);
+    public void testMobileNotExist() {
+        String mobile = "0871365309";
+        Mockito.when(userRepository.findByMobile(mobile)).thenReturn(Arrays.asList());
+        boolean result = registerService.mobileExist(mobile);
         assertFalse(result);
     }
 
