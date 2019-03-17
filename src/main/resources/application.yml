@@ -1,2 +1,12 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.format.sql: true
+  datasource:
+    url: jdbc:sqlserver://localhost;databaseName=REGISTRATION
+    username: sa
+    password: P@ssw0rd
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
 server:
   port: 8082
