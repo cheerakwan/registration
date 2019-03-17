@@ -1,25 +1,13 @@
 package registration.exception;
 
-public class EmailExistsException extends Exception {
+public class EmailExistsException extends RegisterException {
 
-    private static final long serialVersionUID = 5676882353683539876L;
-    private String message;
-    private String code;
 
     public EmailExistsException(String message, String code) {
-        this.message = message;
-        this.code = code;
+        super(message, code);
     }
 
     public EmailExistsException(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public String getCode() {
-        return code;
+        super(message);
     }
 }

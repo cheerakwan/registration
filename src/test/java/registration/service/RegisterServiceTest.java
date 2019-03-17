@@ -11,8 +11,10 @@ import registration.entity.User;
 import registration.repository.UserRepository;
 import registration.utils.DateUtils;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -54,7 +56,7 @@ public class RegisterServiceTest {
         String email = "aa123@gmail.com";
         User u = new User();
         u.setEmail(email);
-        Mockito.when(userRepository.findByEmailAddress(email)).thenReturn(u);
+        Mockito.when(userRepository.findByEmailAddress(email)).thenReturn(Arrays.asList(u));
         boolean result = registerService.emailExist(email);
         assertTrue(result);
     }
@@ -62,9 +64,22 @@ public class RegisterServiceTest {
     @Test
     public void testEmailNotExist() {
         String email = "aa123@gmail.com";
-        User u = new User();
-        Mockito.when(userRepository.findByEmailAddress(email)).thenReturn(u);
+        Mockito.when(userRepository.findByEmailAddress(email)).thenReturn(Arrays.asList());
         boolean result = registerService.emailExist(email);
         assertFalse(result);
+    }
+
+    @Test
+    public void testIsNotLowerSalary() {
+        BigDecimal s = new BigDecimal("50000");
+        boolean  result = registerService.isLowerSalary(s);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testIsLowerSalary() {
+        BigDecimal s = new BigDecimal("14999");
+        boolean  result = registerService.isLowerSalary(s);
+        assertTrue(result);
     }
 }
