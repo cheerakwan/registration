@@ -10,6 +10,7 @@ public class RegisterReq {
     private String email;
     private String phoneNumber;
     private BigDecimal salary;
+    private String memberType;
 
     public String getUserName() {
         return userName;
@@ -50,5 +51,13 @@ public class RegisterReq {
 
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
+    }
+
+    public String getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(String memberType) {
+        this.memberType = memberType;
     }
 }

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "USERS")
 public class User {
 
     @Id
@@ -16,6 +16,7 @@ public class User {
     private String mobile;
     private BigDecimal salary;
     private String email;
+    private String memberType;
     private String createBy;
     private LocalDateTime createTime;
 
@@ -81,5 +82,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(String memberType) {
+        this.memberType = memberType;
     }
 }
