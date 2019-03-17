@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import registration.bean.HeaderResp;
 import registration.bean.RegisterReq;
 import registration.bean.RegisterResp;
+import registration.bean.UserInfo;
 import registration.exception.RegisterException;
 import registration.service.RegisterService;
 
@@ -47,9 +48,12 @@ public class RegisterController {
 
     @GetMapping(path = "/users")
     public ResponseEntity<?> getUserRegister(@RequestParam(name = "referenceCode", required = true) String referenceCode) {
+        UserInfo userInfo = registerService.getUserRegister(referenceCode);
+        if(userInfo == null || userInfo.getReferenceCode() == null) {
+            userInfo.setHeaderResp(setHeaderResp("2001", "Data not found."));
+        }
 
-
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(userInfo);
     }
 
 }

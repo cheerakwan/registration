@@ -11,4 +11,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     @Query("SELECT u FROM User u WHERE u.mobile = :mobile")
     List<User> findByMobile(@Param("mobile") String mobile);
+
+    @Query("SELECT u FROM User u WHERE u.referenceCode = :referenceCode")
+    List<User> findByReferenceCode(@Param("referenceCode") String referenceCode);
 }

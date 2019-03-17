@@ -1,11 +1,13 @@
 package registration.service;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import registration.bean.HeaderResp;
 import registration.bean.RegisterReq;
 import registration.bean.RegisterResp;
+import registration.bean.UserInfo;
 import registration.entity.User;
 import registration.exception.RegisterException;
 import registration.repository.UserRepository;
@@ -68,7 +70,7 @@ public class RegisterService {
         User result = userRepository.save(user);
 
         resp.setReferenceCode(result.getReferenceCode());
-        setHeaderResp(resp);
+        resp.setHeaderResp(statusSuccess());
         return resp;
 
     }
@@ -88,11 +90,11 @@ public class RegisterService {
         return dateString + suffix;
     }
 
-    private void setHeaderResp(RegisterResp resp) {
+    private HeaderResp statusSuccess() {
         HeaderResp headerResp = new HeaderResp();
         headerResp.setStatusCd("0000");
         headerResp.setStatusDesc("SUCCESS");
-        resp.setHeaderResp(headerResp);
+        return headerResp;
     }
 
     public boolean isPlatinum(BigDecimal salary) {
@@ -110,6 +112,17 @@ public class RegisterService {
 
     public boolean isLowerSalary(BigDecimal salary) {
         return salary.doubleValue() < 15000;
+    }
+
+    public UserInfo getUserRegister(String referenceCode) {
+        UserInfo userInfo = new UserInfo();
+        List<User> users = userRepository.findByReferenceCode(referenceCode);
+        if(users != null && users.size() > 0) {
+            BeanUtils.copyProperties(users.get(0), userInfo);
+            userInfo.setHeaderResp(statusSuccess());
+        }
+
+        return  userInfo;
     }
 
 }
