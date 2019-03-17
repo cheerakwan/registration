@@ -6,13 +6,12 @@ CREATE TABLE [dbo].[USERS](
 	[mobile] [nvarchar](15) NOT NULL,
 	[salary] [bigint] NOT NULL,
 	[member_type] [nvarchar](10) NOT NULL,
+	[reference_code] [nvarchar](15) NOT NULL,
 	[create_by] [nvarchar](50) NULL,
 	[create_time] [datetime] NOT NULL,
- CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED
 (
 	[user_id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-
-
