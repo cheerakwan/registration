@@ -17,6 +17,7 @@ public class User {
     private BigDecimal salary;
     private String email;
     private String memberType;
+    private String referenceCode;
     private String createBy;
     private LocalDateTime createTime;
 
@@ -90,5 +91,13 @@ public class User {
 
     public void setMemberType(String memberType) {
         this.memberType = memberType;
+    }
+
+    public String getReferenceCode() {
+        return referenceCode;
+    }
+
+    public void setReferenceCode(String referenceCode) {
+        this.referenceCode = referenceCode;
     }
 }

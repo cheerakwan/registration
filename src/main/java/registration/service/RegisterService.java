@@ -52,6 +52,8 @@ public class RegisterService {
         if(mobileExist(rq.getPhoneNumber())) {
             throw new RegisterException("1002", "This mobile is already in the system.");
         }
+        String refCode = generateReferenceCode(rq.getPhoneNumber());
+
         User user = new User();
         user.setUserName(rq.getUserName());
         user.setPassword(passwordEncoder.encode(rq.getPassword()));
@@ -59,13 +61,13 @@ public class RegisterService {
         user.setMobile(rq.getPhoneNumber());
         user.setSalary(rq.getSalary());
         user.setMemberType(rq.getMemberType());
+        user.setReferenceCode(refCode);
         user.setCreateBy("Admin");
         user.setCreateTime(LocalDateTime.now());
 
         User result = userRepository.save(user);
 
-        String refCode = generateReferenceCode(result.getMobile());
-        resp.setReferenceCode(refCode);
+        resp.setReferenceCode(result.getReferenceCode());
         setHeaderResp(resp);
         return resp;
 
